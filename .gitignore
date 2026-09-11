@@ -1,0 +1,9 @@
+# Icarus Verilog compiled output
+*.out
+
+# GTKWave waveform output
+*.vcd
+
+# GTKWave settings
+*.gtkw
+*.gtkwaverc
