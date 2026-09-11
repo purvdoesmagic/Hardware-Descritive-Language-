@@ -1,74 +1,83 @@
-# Hardware Description Language
+# Hardware Descriptive Language
 
-Simple Verilog HDL implementations of basic combinational digital circuits.
-Each circuit folder contains a design module and a testbench. Testbenches print
-the output in the terminal and generate a VCD waveform for GTKWave.
+A collection of beginner-friendly Verilog HDL implementations of common
+combinational digital circuits. Every project includes a design module and a
+testbench for simulation with Icarus Verilog and waveform viewing in GTKWave.
 
-## Requirements
+## Included Circuits
 
-Install [Icarus Verilog](https://bleyer.org/icarus/) and GTKWave. Check that
-these commands work in PowerShell:
+| Circuit | Description |
+| --- | --- |
+| `HalfAdder` | Adds two 1-bit inputs and produces sum and carry outputs. |
+| `FullAdder` | Implements a full adder using two half adders. |
+| `FullAdderDataflow` | Full adder implemented using dataflow modeling. |
+| `FullSubtractor` | Subtracts two 1-bit inputs with a borrow input. |
+| `ParallelAdder4bit` | 4-bit parallel adder built from full adders. |
+| `AdderSubtractor4bit` | Controlled 4-bit circuit for both addition and subtraction. |
+| `Mux2to1` | 2-to-1 MUX in gate-level, dataflow, and behavioral styles. |
+| `Mux2to1Bufif` | 2-to-1 MUX implemented using `bufif0` and `bufif1`. |
+| `Mux4to1` | 4-to-1 MUX in gate-level, dataflow, and behavioral styles. |
+| `Decoder3to8` | 3-to-8 decoder with one active output for each input value. |
+| `LogicDiagramDataflow` | Dataflow implementation of `E = (A OR B) AND C`. |
 
-```powershell
-iverilog -V
-vvp -V
-gtkwave --version
+## Repository Structure
+
+Each circuit is stored in its own folder:
+
+```text
+CircuitName/
+├── CircuitName.v       # Verilog design module
+└── CircuitName_tb.v    # Verilog testbench
 ```
 
-## How to Run
+Some multi-module circuits, such as the 4-bit adder and adder/subtractor,
+also include a reusable `FullAdder.v` module.
 
-1. Open PowerShell in this repository.
-2. Go to a circuit folder with `cd .\FolderName`.
-3. Compile the design and testbench using the command in the table.
-4. Run the simulation using `vvp .\simulation.out`.
-5. Open the waveform using `gtkwave .\waveform.vcd`.
+## Simulation
 
-Example for the half adder:
+### Prerequisites
+
+- [Icarus Verilog](https://bleyer.org/icarus/) for compiling and simulating Verilog.
+- [GTKWave](https://gtkwave.sourceforge.net/) for viewing waveform files.
+
+### Steps
+
+1. Open a terminal in the required circuit folder.
+2. Compile the design module and its testbench with `iverilog`.
+3. Run the compiled simulation with `vvp`.
+4. Open the generated `.vcd` waveform file with GTKWave.
+
+Example: Half Adder
 
 ```powershell
-cd .\HalfAdder
+cd HalfAdder
 iverilog -o HalfAdder_tb.out HalfAdder.v HalfAdder_tb.v
 vvp .\HalfAdder_tb.out
 gtkwave .\HalfAdder.vcd
 ```
 
-## Circuit Guide
+Example: 4-bit Parallel Adder
 
-| Folder | Circuit | Compile command | Waveform |
-| --- | --- | --- | --- |
-| `HalfAdder` | Half adder | `iverilog -o HalfAdder_tb.out HalfAdder.v HalfAdder_tb.v` | `HalfAdder.vcd` |
-| `FullAdder` | Full adder using two half adders | `iverilog -o FullAdder_tb.out FullAdder.v FullAdder_tb.v` | `FullAdder.vcd` |
-| `FullSubtractor` | Full subtractor | `iverilog -o FullSubtractor_tb.out FullSubtractor.v FullSubtractor_tb.v` | `FullSubtractor.vcd` |
-| `LogicDiagramDataflow` | Logic diagram: `D=A OR B`, `E=D AND C` | `iverilog -o LogicDiagramDataflow_tb.out LogicDiagramDataflow.v LogicDiagramDataflow_tb.v` | `LogicDiagramDataflow.vcd` |
-| `FullAdderDataflow` | Full adder in dataflow style | `iverilog -o FullAdderDataflow_tb.out FullAdderDataflow.v FullAdderDataflow_tb.v` | `FullAdderDataflow.vcd` |
-| `ParallelAdder4bit` | 4-bit parallel adder | `iverilog -o ParallelAdder4bit_tb.out FullAdder.v ParallelAdder4bit.v ParallelAdder4bit_tb.v` | `ParallelAdder4bit.vcd` |
-| `AdderSubtractor4bit` | Controlled 4-bit adder/subtractor | `iverilog -o AdderSubtractor4bit_tb.out FullAdder.v AdderSubtractor4bit.v AdderSubtractor4bit_tb.v` | `AdderSubtractor4bit.vcd` |
-| `Mux2to1Bufif` | 2-to-1 MUX using `bufif0` and `bufif1` | `iverilog -o Mux2to1Bufif_tb.out Mux2to1Bufif.v Mux2to1Bufif_tb.v` | `Mux2to1Bufif.vcd` |
-| `Mux2to1` | Gate-level 2-to-1 MUX | `iverilog -o mux2to1_gate_tb.out mux2to1_gate.v mux2to1_gate_tb.v` | `mux2to1_gate.vcd` |
-| `Mux4to1` | Gate-level 4-to-1 MUX | `iverilog -o mux4to1_gate_tb.out mux4to1_gate.v mux4to1_gate_tb.v` | `mux4to1_gate.vcd` |
-| `Decoder3to8` | 3-to-8 decoder | `iverilog -o Decoder3to8_tb.out Decoder3to8.v Decoder3to8_tb.v` | `Decoder3to8.vcd` |
+```powershell
+cd ParallelAdder4bit
+iverilog -o ParallelAdder4bit_tb.out FullAdder.v ParallelAdder4bit.v ParallelAdder4bit_tb.v
+vvp .\ParallelAdder4bit_tb.out
+gtkwave .\ParallelAdder4bit.vcd
+```
 
-## MUX Modeling Styles
+## Modeling Styles
 
-`Mux2to1` and `Mux4to1` contain three modeling styles:
+The MUX examples demonstrate three common Verilog modeling styles:
 
-- `*_gate.v` — uses logic-gate primitives.
-- `*_dataflow.v` — uses Boolean expressions with `assign`.
-- `*_behavioral.v` — uses `always` with `if-else` logic.
+- **Gate-level modeling** uses Verilog gate primitives such as `and`, `or`, and `not`.
+- **Dataflow modeling** uses Boolean equations with `assign` statements.
+- **Behavioral modeling** uses procedural logic such as `always` and `if-else`.
 
-To run dataflow or behavioral MUX files, replace `gate` in the command with
-`dataflow` or `behavioral`.
+## Waveforms
 
-## Adder/Subtractor Control
-
-In `AdderSubtractor4bit`, control input `M` selects the operation:
-
-| `M` | Operation |
-| --- | --- |
-| `0` | `A + B` |
-| `1` | `A - B` |
+Each testbench creates a VCD waveform file. Waveform screenshots for the
+individual experiments can be added here as they become available.
 
 ## License
 
-This repository uses the existing MIT License. You do not need to make a
-license change unless your college specifically requires a different license.
+This project is available under the [MIT License](LICENSE).
