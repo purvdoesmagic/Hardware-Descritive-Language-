@@ -1,7 +1,7 @@
 # Hardware Descriptive Language
 
 A collection of beginner-friendly Verilog HDL implementations of common
-combinational digital circuits. Every project includes a design module and a
+combinational and sequential digital circuits. Every project includes a design module and a
 testbench for simulation with Icarus Verilog and waveform viewing in GTKWave.
 
 ## Included Circuits
@@ -19,6 +19,10 @@ testbench for simulation with Icarus Verilog and waveform viewing in GTKWave.
 | `Mux4to1` | 4-to-1 MUX in gate-level, dataflow, and behavioral styles. |
 | `Decoder3to8` | 3-to-8 decoder with one active output for each input value. |
 | `LogicDiagramDataflow` | Dataflow implementation of `E = (A OR B) AND C`. |
+| `GatedSRLatch` | Gated SR latch implemented using NAND gate primitives. |
+| `DFlipFlop` | D flip-flop in structural and behavioral modeling styles. |
+| `JKFlipFlop` | JK flip-flop in structural and behavioral modeling styles. |
+| `MasterSlaveFlipFlop` | Master-slave JK flip-flop implemented from gated SR latches. |
 
 ## Repository Structure
 
