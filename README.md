@@ -44,8 +44,8 @@ also include a reusable `FullAdder.v` module.
 
 ### Prerequisites
 
-- [Icarus Verilog](https://bleyer.org/icarus/) for compiling and simulating Verilog.
-- [GTKWave](https://gtkwave.sourceforge.net/) for viewing waveform files.
+- [Icarus Verilog for Windows](https://bleyer.org/icarus/) for compiling and simulating Verilog. The Windows installer includes GTKWave.
+- [GTKWave official project page](https://gtkwave.sourceforge.net/) for waveform-viewer information and source downloads.
 
 ### Steps
 
