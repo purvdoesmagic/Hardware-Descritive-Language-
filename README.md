@@ -23,6 +23,9 @@ testbench for simulation with Icarus Verilog and waveform viewing in GTKWave.
 | `DFlipFlop` | D flip-flop in structural and behavioral modeling styles. |
 | `JKFlipFlop` | JK flip-flop in structural and behavioral modeling styles. |
 | `MasterSlaveFlipFlop` | Master-slave JK flip-flop implemented from gated SR latches. |
+| `ALU8bit` | 8-bit ALU with arithmetic, logical, shift, and flag-output versions. |
+| `Encoder8to3` | Standard 8-to-3 encoder for one active input. |
+| `PriorityEncoder4to2` | 4-to-2 priority encoder with a valid output. |
 
 ## Repository Structure
 
